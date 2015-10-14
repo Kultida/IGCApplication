@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="8dp"
+        android:layout_margin="10dp"
+        card_view:cardBackgroundColor="@color/windowBackground"
+        card_view:cardElevation="10dp"
+        android:layout_centerHorizontal="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/idd"
+                android:paddingLeft="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Id"
+                android:textStyle="bold"
+                android:textColor="#0c0c0c"/>
+            <TextView
+                android:id="@+id/id"
+                android:paddingLeft="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="แสดงไอดี"
+                android:layout_below="@+id/idd"
+                android:textColor="#0c0c0c" />
+
+            <TextView
+                android:id="@+id/namee"
+                android:paddingLeft="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:layout_below="@+id/id"
+                android:textStyle="bold"
+                android:textColor="#0c0c0c"/>
+            <TextView
+                android:id="@+id/name"
+                android:paddingLeft="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="แสดงชื่อ"
+                android:layout_below="@+id/namee"
+                android:textColor="#0c0c0c"/>
+        <TextView
+            android:id="@+id/descriptionn"
+            android:paddingLeft="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Des"
+            android:layout_below="@+id/name"
+            android:textStyle="bold"
+            android:textColor="#0c0c0c"/>
+        <TextView
+            android:id="@+id/description"
+            android:paddingLeft="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="แสดงอธิบาย"
+            android:layout_below="@+id/descriptionn"
+            android:textColor="#0c0c0c"/>
+        <TextView
+            android:id="@+id/userr"
+            android:paddingLeft="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user"
+            android:layout_below="@+id/description"
+            android:textStyle="bold"
+            android:textColor="#0c0c0c"/>
+        <TextView
+            android:id="@+id/user"
+            android:paddingLeft="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="แสดงUserID"
+            android:layout_below="@+id/userr"
+            android:textColor="#0c0c0c"/>
+
+      </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

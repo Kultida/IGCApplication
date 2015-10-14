@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#2196F3</color>
+    <color name="color_primary_dark">#1976D2</color>
+    <color name="accent_color">#c2110e</color>
+    <color name="colorPrimary">#0581f5</color>
+    <color name="colorPrimaryDark">#3a95c5</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#72e1ff</color>
+    <color name="colorAccent2">#bce1ff</color>
+    <color name="buttonsearch">#ffdd35</color>
+    <color name="nav_item_icon_tint_color">#333</color>
+    <color name="nav_item_text_color">#333</color>
+</resources>

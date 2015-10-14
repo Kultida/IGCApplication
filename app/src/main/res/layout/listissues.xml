@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/id"
+        android:paddingLeft="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="แสดงไอดี"
+        android:textColor="#0c0c0c" />
+    <TextView
+        android:id="@+id/name"
+        android:paddingLeft="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="แสดงชื่อ"
+        android:layout_below="@+id/id"
+        android:textColor="#0c0c0c" />
+    <TextView
+    android:id="@+id/description"
+    android:paddingLeft="150dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="แสดงรายละเอียด"
+    android:layout_below="@+id/name"
+    android:textColor="#0c0c0c" />
+    <TextView
+        android:id="@+id/user_id"
+        android:paddingLeft="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="แสดงuser"
+        android:layout_below="@+id/description"
+        android:textColor="#0c0c0c" />
+</LinearLayout>
