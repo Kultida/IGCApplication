@@ -7,8 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -32,7 +32,7 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
 
     private DrawerLayout mDrawerLayout;
@@ -57,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-        tv = (TextView) findViewById(R.id.txtResult);
+        //tv = (TextView) findViewById(R.id.txtResult);
       // pbar = (ProgressBar) findViewById(R.id.pb);
         mTitle = mDrawerTitle = getTitle();
 
@@ -172,8 +172,6 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-
-
     }
 
 
@@ -184,7 +182,7 @@ public class MainActivity extends ActionBarActivity {
         switch(position) {
             default:
             case 0:
-                fragment = new DefaultFragment();
+                fragment = new IssueListFragment();
                 break;
             case 1:
                 fragment = new DefaultFragment();
