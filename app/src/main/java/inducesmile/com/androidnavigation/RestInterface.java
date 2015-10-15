@@ -10,7 +10,6 @@ import retrofit.http.GET;
  */
 public interface RestInterface {
     @GET("/issue")
-   //void getIssue(Callback<ArrayList<Issue>> issue);
     Call<ArrayList<Issue>> searchIssue();
     //@GET("/issue")
     //Call<Issue> getUsersNamedTom(@Query("q") String name);
