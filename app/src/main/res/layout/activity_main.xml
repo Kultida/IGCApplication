@@ -1,4 +1,5 @@
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -36,61 +37,68 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
             android:background="#ccc"/>
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/issue_list"
+            android:name="inducesmile.com.androidnavigation.IssueListFragment"
+            tools:layout="@layout/result_issue">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-            android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+        </fragment>
+        <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"-->
+            <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+            <!--android:paddingTop="@dimen/activity_vertical_margin"-->
+            <!--android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">-->
 
 
-            <LinearLayout
+            <!--<LinearLayout-->
 
-                android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_height="wrap_content">-->
 
-               <TextView
-                    android:id="@+id/id"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="30dp"
-                    android:layout_height="wrap_content"
-                    android:text="Id" />
+               <!--<TextView-->
+                    <!--android:id="@+id/id"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_margin="30dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Id" />-->
 
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="30dp"
-                    android:layout_height="wrap_content"
-                    android:text="Name" />
+                <!--<TextView-->
+                    <!--android:id="@+id/name"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_margin="30dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Name" />-->
 
-                <TextView
+                <!--<TextView-->
 
-                    android:id="@+id/description"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="30dp"
-                    android:layout_height="wrap_content"
-                    android:text="Des" />
+                    <!--android:id="@+id/description"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_margin="30dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Des" />-->
 
-                <TextView
-                    android:id="@+id/user_id"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="30dp"
-                    android:layout_height="wrap_content"
-                    android:text="userid" />
-               <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="New Text"
-                    android:id="@+id/txtResult"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:paddingTop="40dp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/user_id"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_margin="30dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="userid" />-->
+               <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:text="New Text"-->
+                    <!--android:id="@+id/txtResult"-->
+                    <!--android:layout_alignParentLeft="true"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:paddingTop="40dp" />-->
 
-            </LinearLayout>
-        </RelativeLayout>
+            <!--</LinearLayout>-->
+        <!--</RelativeLayout>-->
        <!-- <ListView
         android:id="@+id/list_station"
         android:layout_width="wrap_content"

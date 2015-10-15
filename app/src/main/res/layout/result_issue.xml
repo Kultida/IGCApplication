@@ -31,7 +31,7 @@
                 android:textStyle="bold"
                 android:textColor="#0c0c0c"/>
             <TextView
-                android:id="@+id/id"
+                android:id="@+id/issue_id"
                 android:paddingLeft="150dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,11 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name"
-                android:layout_below="@+id/id"
+                android:layout_below="@+id/issue_id"
                 android:textStyle="bold"
                 android:textColor="#0c0c0c"/>
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/issue_name"
                 android:paddingLeft="150dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,11 +62,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Des"
-            android:layout_below="@+id/name"
+            android:layout_below="@+id/issue_name"
             android:textStyle="bold"
             android:textColor="#0c0c0c"/>
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/issue_description"
             android:paddingLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,12 +78,12 @@
             android:paddingLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user"
-            android:layout_below="@+id/description"
+            android:text="ชื่อผู้รับผิดชอบ"
+            android:layout_below="@+id/issue_description"
             android:textStyle="bold"
             android:textColor="#0c0c0c"/>
         <TextView
-            android:id="@+id/user"
+            android:id="@+id/issue_user_id"
             android:paddingLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
