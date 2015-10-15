@@ -1,26 +1,29 @@
 package inducesmile.com.androidnavigation;
 
+import java.util.List;
+
 /**
  * Created by User on 13/10/2558.
  */
 public class Issue {
-    String id;
+    int id;
     String name;
     String description;
-    String[] user_id;
+    List<Object> user_id;
+    List<Object> stage_id;
+    List<Object> partner_id;
+    String create_date;
+    String date_deadline;
+    int priority;
 
-
-
-    public Issue(String n,String i,String d,String[] u){
+    public Issue(String n,int i,String d,List<Object> u){
         name = n;
         id = i;
         description = d;
         user_id = u;
     }
 
-
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -32,7 +35,7 @@ public class Issue {
         return description;
     }
 
-    public String[] getUser_id() {
+    public List<Object> getUser_id() {
         return user_id;
     }
 }

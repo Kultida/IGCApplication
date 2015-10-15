@@ -16,4 +16,5 @@
     <string name="name">"ชื่อ : "</string>
     <string name="Des">"อธิบาย : "</string>
     <string name="user">"UserID : "</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>
