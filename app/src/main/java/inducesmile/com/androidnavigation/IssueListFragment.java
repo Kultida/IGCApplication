@@ -172,6 +172,27 @@ public class IssueListFragment extends Fragment {
     }
 
     public void testCustomer(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://igc.kmodoo.com:8888")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestInterface rest = retrofit.create(RestInterface.class);
 
+
+        Call<Customer> getCustomer = rest.getCustomer(15);
+
+        getCustomer.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Response<Customer> response) {
+                Customer customer = response.body();
+
+                Log.i("test","SUCCESS"+customer.name);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.i("test","ERROR!!");
+            }
+        });
     }
 }

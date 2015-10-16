@@ -30,8 +30,8 @@ public interface RestInterface {
 
     @FormUrlEncoded
     @POST("/customer")
-    Call<Integer> getCustomer(
-            @Field("customer_id") String customer_id
+    Call<Customer> getCustomer(
+            @Field("customer_id") Integer customer_id
     );
 
     @FormUrlEncoded
