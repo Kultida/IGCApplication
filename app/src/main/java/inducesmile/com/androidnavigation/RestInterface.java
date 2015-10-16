@@ -2,6 +2,7 @@ package inducesmile.com.androidnavigation;
 
 import java.util.ArrayList;
 
+import inducesmile.com.androidnavigation.ModelClass.StageChangeStatus;
 import retrofit.Call;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -36,9 +37,11 @@ public interface RestInterface {
 
     @FormUrlEncoded
     @POST("/updateStage")
-    Call<Boolean> updateStage(
-            @Field("issue_id") String issue_id,
-            @Field("stage_id") String stage_id
+    Call<StageChangeStatus> updateStage(
+            @Field("issue_id") Integer issue_id,
+            @Field("stage_id") Integer stage_id
     );
+
+
 
 }

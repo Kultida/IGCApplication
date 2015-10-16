@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import inducesmile.com.androidnavigation.ModelClass.StageChangeStatus;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -61,7 +62,6 @@ public class IssueListFragment extends Fragment {
                 mRecyclerView.setAdapter(mAdapter);
 
 
-
             }
 
             @Override
@@ -84,13 +84,14 @@ public class IssueListFragment extends Fragment {
     private class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
 
         private ArrayList<Issue> issueList;
+
         public myAdapter(ArrayList<Issue> issueList) {
             this.issueList = issueList;
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view  = LayoutInflater
+            View view = LayoutInflater
                     .from(parent.getContext())
                     .inflate(R.layout.result_issue, parent, false);
             ViewHolder viewHolder = new ViewHolder(view);
@@ -115,8 +116,7 @@ public class IssueListFragment extends Fragment {
         }
 
 
-
-        public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             public TextView issue_name;
             public TextView issue_id;
             public TextView issue_description;
@@ -135,14 +135,20 @@ public class IssueListFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),DetailActivity.class);
+                Intent intent = new Intent(getContext(), DetailActivity.class);
+
+                //Send issue id to new activity
+                TextView textView = (TextView) v.findViewById(R.id.issue_id);
+                Log.i("test","sending issue id to new Detail Act"+textView.getText().toString());
+                intent.putExtra("issue_id",textView.getText().toString());
+
                 startActivity(intent);
             }
 
         }
     }
 
-    public void testLogin(){
+    public void testLogin() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://igc.kmodoo.com:8888")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -150,28 +156,52 @@ public class IssueListFragment extends Fragment {
         RestInterface rest = retrofit.create(RestInterface.class);
 
 
-        Call<User> getUID = rest.login("admin","qwer1234");
+        Call<User> getUID = rest.login("admin", "qwer1234");
 
         getUID.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Response<User> response) {
                 User user = response.body();
 
-                Log.i("test","SUCCESS"+Integer.toString(user.uid));
+                Log.i("test", "SUCCESS" + Integer.toString(user.uid));
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.i("test","ERROR!!");
+                Log.i("test", "ERROR!!");
             }
         });
     }
 
-    public void testChangeStage(){
+    public void testChangeStage() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://igc.kmodoo.com:8888")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestInterface rest = retrofit.create(RestInterface.class);
+
+
+        Call<StageChangeStatus> changeStage = rest.updateStage(4863, 1);
+
+        changeStage.enqueue(new Callback<StageChangeStatus>() {
+            @Override
+            public void onResponse(Response<StageChangeStatus> response) {
+                StageChangeStatus stageChangeStatus = response.body();
+                if (stageChangeStatus.isSuccess)
+                    Log.i("test", "update SUCCESS");
+                else
+                    Log.i("test", "update failed");
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.i("test", "ERROR!!");
+            }
+        });
 
     }
 
-    public void testCustomer(){
+    public void testCustomer() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://igc.kmodoo.com:8888")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -186,12 +216,12 @@ public class IssueListFragment extends Fragment {
             public void onResponse(Response<Customer> response) {
                 Customer customer = response.body();
 
-                Log.i("test","SUCCESS"+customer.name);
+                Log.i("test", "SUCCESS" + customer.name);
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.i("test","ERROR!!");
+                Log.i("test", "ERROR!!");
             }
         });
     }

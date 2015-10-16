@@ -1,5 +1,6 @@
 package inducesmile.com.androidnavigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import inducesmile.com.androidnavigation.DetailFragment.IssueDetailFragment;
 
@@ -22,9 +24,16 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        //get issue id from intent
+        Intent intent = getIntent();
+        issue_id = Integer.parseInt(intent.getStringExtra("issue_id"));
+        Log.i("test","Receive issue id :"+Integer.toString(issue_id));
+
         tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
         viewPager = (ViewPager) findViewById(R.id.main_view_pager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+
 
         loadPager();
     }
@@ -47,7 +56,7 @@ public class DetailActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
 
             if(position == 0)
-                return IssueDetailFragment.newInstance();
+                return IssueDetailFragment.newInstance(issue_id);
             else if(position == 1)
                 return IssueListFragment.newInstance();
             else
