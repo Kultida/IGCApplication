@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,8 @@ public class IssueListFragment extends Fragment {
                 mAdapter = new myAdapter(issueList);
                 mRecyclerView.setAdapter(mAdapter);
 
+
+
             }
 
             @Override
@@ -69,6 +72,11 @@ public class IssueListFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        testLogin();
+        testCustomer();
+        testChangeStage();
 
         return view;
     }
@@ -132,5 +140,38 @@ public class IssueListFragment extends Fragment {
             }
 
         }
+    }
+
+    public void testLogin(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://igc.kmodoo.com:8888")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestInterface rest = retrofit.create(RestInterface.class);
+
+
+        Call<User> getUID = rest.login("admin","qwer1234");
+
+        getUID.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Response<User> response) {
+                User user = response.body();
+
+                Log.i("test","SUCCESS"+Integer.toString(user.uid));
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.i("test","ERROR!!");
+            }
+        });
+    }
+
+    public void testChangeStage(){
+
+    }
+
+    public void testCustomer(){
+
     }
 }

@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //tv = (TextView) findViewById(R.id.txtResult);
       // pbar = (ProgressBar) findViewById(R.id.pb);
         mTitle = mDrawerTitle = getTitle();
@@ -307,6 +306,10 @@ public class MainActivity extends AppCompatActivity {
             return mIssues.size();
         }
     }
+
+
+
+
 
 
 }
