@@ -56,7 +56,7 @@ public class IssueDetailFragment extends Fragment{
                 TextView issue_description = (TextView) view.findViewById(R.id.issue_description);
                 issue_description.setText(issue.getDescription());
                 TextView issue_deadline = (TextView) view.findViewById(R.id.issue_deadline);
-                issue_description.setText(issue.date_deadline);
+                issue_deadline.setText(issue.date_deadline);
                 Double customer_id = (Double) issue.partner_id.get(0);
                 getCustomer(customer_id,view);
 
