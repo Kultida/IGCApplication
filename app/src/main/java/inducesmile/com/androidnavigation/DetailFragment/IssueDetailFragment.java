@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import inducesmile.com.androidnavigation.Customer;
 import inducesmile.com.androidnavigation.Issue;
 import inducesmile.com.androidnavigation.R;
 import inducesmile.com.androidnavigation.RestInterface;
@@ -20,6 +21,7 @@ import retrofit.Retrofit;
 
 public class IssueDetailFragment extends Fragment{
     private Issue issue;
+    private Customer customer;
     public int issue_id;
 
     public static IssueDetailFragment newInstance(int issue_id) {
@@ -48,13 +50,15 @@ public class IssueDetailFragment extends Fragment{
             @Override
             public void onResponse(Response<Issue> response) {
                 issue = response.body();
-                Log.i("test",issue.getName());
+                Log.i("test", issue.getName());
                 TextView issue_name = (TextView) view.findViewById(R.id.issue_name);
                 issue_name.setText(issue.getName());
                 TextView issue_description = (TextView) view.findViewById(R.id.issue_description);
                 issue_description.setText(issue.getDescription());
-
-
+                TextView issue_deadline = (TextView) view.findViewById(R.id.issue_deadline);
+                issue_description.setText(issue.date_deadline);
+                Double customer_id = (Double) issue.partner_id.get(0);
+                getCustomer(customer_id,view);
 
             }
 
@@ -67,5 +71,30 @@ public class IssueDetailFragment extends Fragment{
 
 
         return view;
+    }
+
+    public void getCustomer(Double customer_id, final View viewInCustomer) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://igc.kmodoo.com:8888")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestInterface rest = retrofit.create(RestInterface.class);
+
+        Log.i("TEST","Address of customer_id: "+Integer.toString(customer_id.intValue()));
+        Call<Customer> getCustomer = rest.getCustomer(customer_id.intValue());
+
+        getCustomer.enqueue(new Callback<Customer>() {
+            @Override
+            public void onResponse(Response<Customer> response) {
+                customer = response.body();
+                TextView issue_name = (TextView) viewInCustomer.findViewById(R.id.customer_address);
+                issue_name.setText(customer.street);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.i("test", "ERROR!!");
+            }
+        });
     }
 }

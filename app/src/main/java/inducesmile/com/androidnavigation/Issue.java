@@ -11,9 +11,9 @@ public class Issue {
     String description;
     List<Object> user_id;
     List<Object> stage_id;
-    List<Object> partner_id;
+    public List<Object> partner_id;
     String create_date;
-    String date_deadline;
+    public String date_deadline;
     int priority;
 
     public Issue(String n,int i,String d,List<Object> u){

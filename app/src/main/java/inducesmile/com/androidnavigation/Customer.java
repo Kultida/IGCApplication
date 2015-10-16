@@ -6,6 +6,6 @@ package inducesmile.com.androidnavigation;
 public class Customer {
     int id;
     String name;
-    String street;
+    public String street;
 
 }
