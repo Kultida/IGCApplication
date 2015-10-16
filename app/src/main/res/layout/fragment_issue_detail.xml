@@ -55,7 +55,7 @@
         android:text="Location:"
         android:textColor="@color/black"
         android:textSize="18sp"/>
-    
+
     <TextView
         android:id="@+id/customer_address"
         android:layout_width="match_parent"
@@ -73,12 +73,14 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
         <Button
+            android:id="@+id/reject_button"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Reject"
             android:background="#ff0d00"/>
         <Button
+            android:id="@+id/accept_button"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

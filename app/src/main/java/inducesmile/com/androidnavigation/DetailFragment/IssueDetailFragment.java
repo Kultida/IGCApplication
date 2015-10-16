@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import inducesmile.com.androidnavigation.Customer;
 import inducesmile.com.androidnavigation.Issue;
+import inducesmile.com.androidnavigation.ModelClass.StageChangeStatus;
 import inducesmile.com.androidnavigation.R;
 import inducesmile.com.androidnavigation.RestInterface;
 import retrofit.Call;
@@ -58,15 +60,38 @@ public class IssueDetailFragment extends Fragment{
                 TextView issue_deadline = (TextView) view.findViewById(R.id.issue_deadline);
                 issue_deadline.setText(issue.date_deadline);
                 Double customer_id = (Double) issue.partner_id.get(0);
-                getCustomer(customer_id,view);
+                getCustomer(customer_id, view);
 
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.i("test","Error");
+                Log.i("test", "Error");
             }
         });
+
+
+        //Handle Button
+        //1 = Quotation
+        //2 = In progress
+        //3 = Done
+        //4 = cancel
+        //5 = Reported
+        final Button rejectButton = (Button) view.findViewById(R.id.reject_button);
+        rejectButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                stageChange(issue.id, 4);
+            }
+        });
+        final Button acceptButton = (Button) view.findViewById(R.id.accept_button);
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                stageChange(issue.id, 2);
+            }
+        });
+
 
 
 
@@ -80,7 +105,7 @@ public class IssueDetailFragment extends Fragment{
                 .build();
         RestInterface rest = retrofit.create(RestInterface.class);
 
-        Log.i("TEST","Address of customer_id: "+Integer.toString(customer_id.intValue()));
+        Log.i("TEST", "Address of customer_id: " + Integer.toString(customer_id.intValue()));
         Call<Customer> getCustomer = rest.getCustomer(customer_id.intValue());
 
         getCustomer.enqueue(new Callback<Customer>() {
@@ -96,5 +121,33 @@ public class IssueDetailFragment extends Fragment{
                 Log.i("test", "ERROR!!");
             }
         });
+    }
+
+    public void stageChange(int issue_id,int stage_id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://igc.kmodoo.com:8888")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestInterface rest = retrofit.create(RestInterface.class);
+
+
+        Call<StageChangeStatus> changeStage = rest.updateStage(issue_id, stage_id);
+
+        changeStage.enqueue(new Callback<StageChangeStatus>() {
+            @Override
+            public void onResponse(Response<StageChangeStatus> response) {
+                StageChangeStatus stageChangeStatus = response.body();
+                if (stageChangeStatus.isSuccess)
+                    Log.i("test", "update SUCCESS");
+                else
+                    Log.i("test", "update failed");
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.i("test", "ERROR!!");
+            }
+        });
+
     }
 }
