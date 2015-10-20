@@ -49,8 +49,9 @@ public class IssueDetailFragment extends Fragment{
         Call<Issue> issueListing = issueDetail.getIssue(issue_id);
 
         issueListing.enqueue(new Callback<Issue>() {
+
             @Override
-            public void onResponse(Response<Issue> response) {
+            public void onResponse(Response<Issue> response, Retrofit retrofit) {
                 issue = response.body();
                 Log.i("test", issue.getName());
                 TextView issue_name = (TextView) view.findViewById(R.id.issue_name);
@@ -61,7 +62,6 @@ public class IssueDetailFragment extends Fragment{
                 issue_deadline.setText(issue.date_deadline);
                 Double customer_id = (Double) issue.partner_id.get(0);
                 getCustomer(customer_id, view);
-
             }
 
             @Override
@@ -109,8 +109,9 @@ public class IssueDetailFragment extends Fragment{
         Call<Customer> getCustomer = rest.getCustomer(customer_id.intValue());
 
         getCustomer.enqueue(new Callback<Customer>() {
+
             @Override
-            public void onResponse(Response<Customer> response) {
+            public void onResponse(Response<Customer> response, Retrofit retrofit) {
                 customer = response.body();
                 TextView issue_name = (TextView) viewInCustomer.findViewById(R.id.customer_address);
                 issue_name.setText(customer.street);
@@ -134,8 +135,9 @@ public class IssueDetailFragment extends Fragment{
         Call<StageChangeStatus> changeStage = rest.updateStage(issue_id, stage_id);
 
         changeStage.enqueue(new Callback<StageChangeStatus>() {
+
             @Override
-            public void onResponse(Response<StageChangeStatus> response) {
+            public void onResponse(Response<StageChangeStatus> response, Retrofit retrofit) {
                 StageChangeStatus stageChangeStatus = response.body();
                 if (stageChangeStatus.isSuccess)
                     Log.i("test", "update SUCCESS");

@@ -1,5 +1,6 @@
 package inducesmile.com.androidnavigation;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,9 +63,9 @@ public class SearchIssue extends AppCompatActivity {
 
 
         searching.enqueue(new Callback<ArrayList<Issue>>() {
-            @Override
-            public void onResponse(Response<ArrayList<Issue>> response) {
 
+            @Override
+            public void onResponse(Response<ArrayList<Issue>> response, Retrofit retrofit) {
                 issueList = response.body();
                 mAdapter = new myAdapter(issueList);
                 mRecyclerView.setAdapter(mAdapter);
@@ -132,6 +133,12 @@ public class SearchIssue extends AppCompatActivity {
             holder.name.setText(issue.name);
             holder.description.setText(issue.description);
             holder.user_id.setText(issue.id);
+            if((Integer) issue.stage_id.get(0)==4){
+                holder.id.setBackgroundColor(Color.RED);
+            }else if ((Integer) issue.stage_id.get(0)==2){
+                holder.id.setBackgroundColor(Color.GREEN);
+            }
+
         }
 
         @Override

@@ -52,8 +52,9 @@ public class IssueListFragment extends Fragment {
         Call<ArrayList<Issue>> issueListing = issuelistapi.searchIssue();
 
         issueListing.enqueue(new Callback<ArrayList<Issue>>() {
+
             @Override
-            public void onResponse(Response<ArrayList<Issue>> response) {
+            public void onResponse(Response<ArrayList<Issue>> response, Retrofit retrofit) {
                 issueList = response.body();
 
 //                Log.i("DATA", issueList.get(0).create_date);
@@ -159,8 +160,9 @@ public class IssueListFragment extends Fragment {
         Call<User> getUID = rest.login("admin", "qwer1234");
 
         getUID.enqueue(new Callback<User>() {
+
             @Override
-            public void onResponse(Response<User> response) {
+            public void onResponse(Response<User> response, Retrofit retrofit) {
                 User user = response.body();
 
                 Log.i("test", "SUCCESS" + Integer.toString(user.uid));
@@ -184,8 +186,9 @@ public class IssueListFragment extends Fragment {
         Call<StageChangeStatus> changeStage = rest.updateStage(4863, 1);
 
         changeStage.enqueue(new Callback<StageChangeStatus>() {
+
             @Override
-            public void onResponse(Response<StageChangeStatus> response) {
+            public void onResponse(Response<StageChangeStatus> response, Retrofit retrofit) {
                 StageChangeStatus stageChangeStatus = response.body();
                 if (stageChangeStatus.isSuccess)
                     Log.i("test", "update SUCCESS");
@@ -212,10 +215,10 @@ public class IssueListFragment extends Fragment {
         Call<Customer> getCustomer = rest.getCustomer(15);
 
         getCustomer.enqueue(new Callback<Customer>() {
-            @Override
-            public void onResponse(Response<Customer> response) {
-                Customer customer = response.body();
 
+            @Override
+            public void onResponse(Response<Customer> response, Retrofit retrofit) {
+                Customer customer = response.body();
                 Log.i("test", "SUCCESS" + customer.name);
             }
 

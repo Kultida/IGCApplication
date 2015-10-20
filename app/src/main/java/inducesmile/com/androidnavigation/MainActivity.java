@@ -146,12 +146,13 @@ public class MainActivity extends AppCompatActivity {
         searching.enqueue(new Callback<ArrayList<Issue>>() {
 
 
+
             @Override
-            public void onResponse(Response<ArrayList<Issue>>  response) {
+            public void onResponse(Response<ArrayList<Issue>> response, Retrofit retrofit) {
                 if (response.isSuccess()) {
                     Log.println(Log.INFO, "Hey", response.toString());
-                     issuelist = response.body();
-                  //  tv.setText("Id:" + issue.getId() + "\nName :" + issue.getName() + "\nDescription :" + issue.getDescription() + "\nUserId :" + issue.getUser_id());
+                    issuelist = response.body();
+                    //  tv.setText("Id:" + issue.getId() + "\nName :" + issue.getName() + "\nDescription :" + issue.getDescription() + "\nUserId :" + issue.getUser_id());
 
                     Toast.makeText(getBaseContext(), "การค้นหา", Toast.LENGTH_SHORT).show();
 
@@ -159,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
                     //request not successful (like 400,401,403 etc)
                     //Handle errors
                 }
-
             }
 
             @Override

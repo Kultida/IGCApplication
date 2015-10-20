@@ -17,4 +17,11 @@
     <string name="Des">"อธิบาย : "</string>
     <string name="user">"UserID : "</string>
     <string name="title_activity_detail">DetailActivity</string>
+
+
+
+    <string name="btnTakePicture">Capture Image</string>
+    <string name="btnRecordVideo">Record Video</string>
+    <string name="or">(or)</string>
+    <string name="btnUploadToServer">Upload to Server</string>
 </resources>
