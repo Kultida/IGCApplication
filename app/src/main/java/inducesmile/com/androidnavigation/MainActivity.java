@@ -184,13 +184,13 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new IssueListFragment();
                 break;
             case 1:
-                fragment = new DefaultFragment();
+                fragment = new IssueListFragment();
                 break;
             case 2:
-                fragment = new DefaultFragment();
+                fragment = new IssueListFragment();
                 break;
             case 3:
-                fragment = new DefaultFragment();
+                fragment = new IssueListFragment();
                 break;
         }
         fragmentManager.beginTransaction().replace(R.id.main_fragment_container, fragment).commit();

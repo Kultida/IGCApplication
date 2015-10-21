@@ -1,97 +1,149 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
-<LinearLayout
+    android:layout_alignParentBottom="true"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="inducesmile.com.androidnavigation.DetailFragment.IssueDetailFragment">
+    android:weightSum="1">
 
-    <TextView
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Issue:"
-        android:textColor="@color/black"
-        android:textSize="24sp"/>
-    <TextView
-        android:id="@+id/issue_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Issue Name"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:fillViewport="false">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Deadline:"
-        android:textColor="@color/black"
-        android:textSize="18sp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context="inducesmile.com.androidnavigation.DetailFragment.IssueDetailFragment">
 
-    <TextView
-        android:id="@+id/issue_deadline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Issue Deadline"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="รายละเอียด:"
-        android:textColor="@color/black"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/issue_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Issue Description"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Location:"
-        android:textColor="@color/black"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/customer_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="กำลังโหลด"/>
+            <TextView
+                android:id="@+id/issue_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/issue_name"
+                android:textColor="#0c0c0c"
+                android:textStyle="bold" />
 
 
+            <TextView
+                android:id="@+id/issue_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/issue_name1"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="5dp"
+                android:hint="@string/issue_hint_name"
+                android:textColor="#0c0c0c" />
+
+            <TextView
+                android:id="@+id/issue_deadline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/issue_name1"
+                android:layout_alignStart="@+id/issue_name1"
+                android:layout_below="@+id/issue_name"
+                android:layout_marginTop="5dp"
+                android:text="@string/issue_deadline"
+                android:textColor="#0c0c0c"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/issue_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/issue_name"
+                android:layout_alignStart="@+id/issue_name"
+                android:layout_below="@+id/issue_deadline1"
+                android:layout_marginTop="5dp"
+                android:hint="@string/issue_hint_deadline"
+                android:textColor="#0c0c0c" />
+
+            <TextView
+                android:id="@+id/issue_descriptionn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/issue_name1"
+                android:layout_alignStart="@+id/issue_name1"
+                android:layout_below="@+id/issue_deadline"
+                android:layout_marginTop="5dp"
+                android:text="@string/issue_description"
+                android:textColor="#0c0c0c"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/issue_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/issue_name"
+                android:layout_alignStart="@+id/issue_name"
+                android:layout_below="@+id/issue_descriptionn1"
+                android:layout_marginTop="5dp"
+                android:hint="@string/issue_hint_description"
+                android:textColor="#0c0c0c" />
+
+            <TextView
+                android:id="@+id/customer_address1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/issue_name1"
+                android:layout_alignStart="@+id/issue_name1"
+                android:layout_below="@+id/issue_description"
+                android:layout_marginTop="5dp"
+                android:text="@string/issue_location"
+                android:textColor="#0c0c0c"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/customer_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/issue_name"
+                android:layout_alignStart="@+id/issue_name"
+                android:layout_below="@+id/customer_address1"
+                android:layout_marginTop="5dp"
+                android:hint="@string/issue_hint_location"
+                android:textColor="#0c0c0c" />
+
+        </RelativeLayout>
+    </ScrollView>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/reject_button"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Reject"
-            android:background="#ff0d00"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
         <Button
             android:id="@+id/accept_button"
             android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Accept"
-            android:background="#66FF33"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_selector_accept"
 
+            />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/reject_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button_selector_reject" />
     </RelativeLayout>
 
-
-</LinearLayout>
-
-</ScrollView>
+</FrameLayout>

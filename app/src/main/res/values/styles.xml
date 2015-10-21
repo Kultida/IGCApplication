@@ -1,9 +1,41 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/accent_color</item>
+
     </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark</item>
+        <item name="colorAccent">@color/accentColor</item>
+    </style>
+
+    <style name="Base.Widget.Design.TabLayout." parent="android:Widget">
+
+
+        <item name="tabIndicatorColor">@color/accentColor</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+
+    </style>
+
+
+    <style name="ButtonNormalText" parent="@android:style/Widget.Button">
+
+        <item name="android:height" >44dip</item>
+        <item name="android:background" >@drawable/button_selector_accept</item>
+        <item name="android:focusable" >true</item>
+        <item name="android:clickable" >true</item>
+    </style>
+
+    <style name="ButtonNormalTextWithIcon" parent="ButtonNormalText">
+        <item name="android:drawableLeft" >@drawable/accept_but</item>
+    </style>
+
+
 </resources>

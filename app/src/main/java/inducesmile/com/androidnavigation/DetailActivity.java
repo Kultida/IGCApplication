@@ -6,9 +6,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import inducesmile.com.androidnavigation.DetailFragment.IssueDetailFragment;
 import inducesmile.com.androidnavigation.PhotoUploader.PhotoGridViewFragment;
@@ -16,10 +19,11 @@ import inducesmile.com.androidnavigation.PhotoUploader.PhotoUploaderFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
-    String[] TAB_TITLES={"ภาพรวม","บันทึกงาน","แผนที่"};
+    String[] TAB_TITLES = {"ภาพรวม", "แผนที่", "บันทึกงาน"};
     TabLayout tabLayout;
     ViewPager viewPager;
     int issue_id;
+    private Toolbar topToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +33,20 @@ public class DetailActivity extends AppCompatActivity {
         //get issue id from intent
         Intent intent = getIntent();
         issue_id = Integer.parseInt(intent.getStringExtra("issue_id"));
-        Log.i("test","Receive issue id :"+Integer.toString(issue_id));
+        Log.i("test", "Receive issue id :" + Integer.toString(issue_id));
+
+
+        viewPager = (ViewPager) findViewById(R.id.main_view_pager);
 
         tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
-        viewPager = (ViewPager) findViewById(R.id.main_view_pager);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+
+        topToolBar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(topToolBar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         loadPager();
@@ -57,9 +69,9 @@ public class DetailActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
 
-            if(position == 0)
+            if (position == 0)
                 return IssueDetailFragment.newInstance(issue_id);
-            else if(position == 1)
+            else if (position == 1)
                 return PhotoUploaderFragment.newInstance(issue_id);
             else
                 return PhotoGridViewFragment.newInstance(issue_id);
@@ -75,6 +87,18 @@ public class DetailActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return TAB_TITLES[position];
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
