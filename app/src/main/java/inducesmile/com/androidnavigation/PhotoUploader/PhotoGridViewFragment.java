@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
@@ -64,10 +65,13 @@ public class PhotoGridViewFragment extends Fragment{
     }
 
     private void selectImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent,SELECT_PICTURE);
     }
 
 
@@ -129,17 +133,23 @@ public class PhotoGridViewFragment extends Fragment{
             @Override
             public void onResponse(Response<UploadStatus> response, Retrofit retrofit) {
                 UploadStatus result = response.body();
+                imageAdapter.getPhotoPath();
+                imageAdapter.notifyDataSetChanged();
 
                 if(result.error){
                     Log.i("TEST","photo upload failed");
+                    Toast.makeText(getContext(), "Upload Failed...", Toast.LENGTH_LONG).show();
                 }else {
                     Log.i("TEST","photo sent success");
+                    Toast.makeText(getContext(),"Upload Completed...",Toast.LENGTH_LONG).show();
+
                 }
 
             }
 
             @Override
             public void onFailure(Throwable t) {
+                Toast.makeText(getContext(), "Upload Failed...", Toast.LENGTH_LONG).show();
                 Log.i("test", "ERROR!!");
             }
         });
