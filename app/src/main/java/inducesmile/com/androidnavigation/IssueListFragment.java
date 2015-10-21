@@ -109,6 +109,7 @@ public class IssueListFragment extends Fragment {
             holder.issue_userid.setText((String) issue.user_id.get(1));
 
 
+
         }
 
         @Override
@@ -132,6 +133,8 @@ public class IssueListFragment extends Fragment {
                 issue_id = (TextView) itemView.findViewById(R.id.issue_id);
                 issue_description = (TextView) itemView.findViewById(R.id.issue_description);
                 issue_userid = (TextView) itemView.findViewById(R.id.issue_user_id);
+
+
             }
 
             @Override
