@@ -37,14 +37,7 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
             android:background="#ccc"/>
-        <fragment
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/issue_list"
-            android:name="inducesmile.com.androidnavigation.IssueListFragment"
-            tools:layout="@layout/result_issue">
-
-        </fragment>
+       
         <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
             <!--xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"-->

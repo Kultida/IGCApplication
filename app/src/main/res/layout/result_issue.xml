@@ -22,76 +22,89 @@
         android:layout_height="match_parent">
 
 
-            <TextView
-                android:id="@+id/idd"
-                android:paddingLeft="150dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Id"
-                android:textStyle="bold"
-                android:textColor="#0c0c0c"/>
-            <TextView
-                android:id="@+id/issue_id"
-                android:paddingLeft="150dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="แสดงไอดี"
-                android:layout_below="@+id/idd"
-                android:textColor="#0c0c0c" />
-
-            <TextView
-                android:id="@+id/namee"
-                android:paddingLeft="150dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:layout_below="@+id/issue_id"
-                android:textStyle="bold"
-                android:textColor="#0c0c0c"/>
-            <TextView
-                android:id="@+id/issue_name"
-                android:paddingLeft="150dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="แสดงชื่อ"
-                android:layout_below="@+id/namee"
-                android:textColor="#0c0c0c"/>
         <TextView
-            android:id="@+id/descriptionn"
-            android:paddingLeft="150dp"
+            android:id="@+id/idd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Des"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:text="@string/Id"
+            android:textColor="#0c0c0c"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/issue_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="แสดงไอดี"
+            android:paddingLeft="20dp"
+            android:textColor="#0c0c0c"
+            android:layout_alignTop="@+id/idd"
+            android:layout_alignRight="@+id/issue_name"
+            android:layout_alignEnd="@+id/issue_name" />
+
+        <TextView
+            android:id="@+id/namee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/issue_id"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:text="@string/name"
+            android:textColor="#0c0c0c"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/issue_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="แสดงชื่อ"
+            android:paddingLeft="20dp"
+            android:textColor="#0c0c0c"
+            android:layout_alignTop="@+id/namee"
+            android:layout_toRightOf="@+id/idd"
+            android:layout_toEndOf="@+id/idd" />
+        <TextView
+            android:id="@+id/descriptionn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/issue_name"
-            android:textStyle="bold"
-            android:textColor="#0c0c0c"/>
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:text="@string/Des"
+            android:textColor="#0c0c0c"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/issue_description"
-            android:paddingLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="แสดงอธิบาย"
-            android:layout_below="@+id/descriptionn"
-            android:textColor="#0c0c0c"/>
+            android:paddingLeft="20dp"
+            android:textColor="#0c0c0c"
+            android:layout_alignTop="@+id/descriptionn"
+            android:layout_toRightOf="@+id/descriptionn"
+            android:layout_toEndOf="@+id/descriptionn" />
         <TextView
             android:id="@+id/userr"
-            android:paddingLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ชื่อผู้รับผิดชอบ"
             android:layout_below="@+id/issue_description"
-            android:textStyle="bold"
-            android:textColor="#0c0c0c"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:text="ชื่อผู้รับผิดชอบ:"
+            android:textColor="#0c0c0c"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/issue_user_id"
-            android:paddingLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="แสดงUserID"
-            android:layout_below="@+id/userr"
-            android:textColor="#0c0c0c"/>
+            android:paddingLeft="20dp"
+            android:textColor="#0c0c0c"
+            android:layout_alignTop="@+id/userr"
+            android:layout_centerHorizontal="true" />
 
-      </RelativeLayout>
+
+    </RelativeLayout>
 
 
     </android.support.v7.widget.CardView>
