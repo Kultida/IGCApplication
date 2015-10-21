@@ -12,7 +12,6 @@ import android.util.Log;
 
 import inducesmile.com.androidnavigation.DetailFragment.IssueDetailFragment;
 import inducesmile.com.androidnavigation.PhotoUploader.PhotoGridViewFragment;
-import inducesmile.com.androidnavigation.PhotoUploader.PhotoUploaderFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -60,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
             if(position == 0)
                 return IssueDetailFragment.newInstance(issue_id);
             else if(position == 1)
-                return PhotoUploaderFragment.newInstance(issue_id);
+                return PhotoGridViewFragment.newInstance(issue_id);
             else
                 return PhotoGridViewFragment.newInstance(issue_id);
 
