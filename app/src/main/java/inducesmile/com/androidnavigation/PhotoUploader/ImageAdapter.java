@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import inducesmile.com.androidnavigation.R;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -20,7 +21,7 @@ import retrofit.Retrofit;
 
 public class ImageAdapter extends ArrayAdapter {
     private Context mContext;
-    private ArrayList<photoPath> imageUrl;
+    public ArrayList<photoPath> imageUrl;
     private Integer issue_id;
 
     public ImageAdapter(Context c,Integer issue_id) {
@@ -30,12 +31,7 @@ public class ImageAdapter extends ArrayAdapter {
         mContext = c;
         this.issue_id = issue_id;
         getPhotoPath();
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
+
     }
 
     public int getCount() {
@@ -64,9 +60,10 @@ public class ImageAdapter extends ArrayAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
-        Glide.with(mContext).load(imageUrl.get(position).file_path).into(imageView);
-//        Glide.with(get).load("http://goo.gl/gEgYUd").into(imageView);
-//        imageView.setImageURI(imageUrl.get(position));
+        Glide.with(mContext).load(imageUrl.get(position).file_path)
+                .placeholder(R.drawable.photo_placeholder_loading)
+                .into(imageView);
+
         return imageView;
     }
 

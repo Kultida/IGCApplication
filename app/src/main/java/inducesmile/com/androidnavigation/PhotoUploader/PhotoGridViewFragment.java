@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
@@ -52,6 +54,17 @@ public class PhotoGridViewFragment extends Fragment{
         imageAdapter = new ImageAdapter(getContext(),issue_id);
         imageAdapter.clear();
         gridview.setAdapter(imageAdapter);
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Create intent
+                Intent intent = new Intent(getContext(), PhotoDetailActivity.class);
+                intent.putExtra("image_path", imageAdapter.imageUrl.get(position).file_path);
+
+                //Start details activity
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton myFab = (FloatingActionButton)  view.findViewById(R.id.myFAB);
         myFab.setOnClickListener(new View.OnClickListener() {
@@ -64,10 +77,13 @@ public class PhotoGridViewFragment extends Fragment{
     }
 
     private void selectImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent,SELECT_PICTURE);
     }
 
 
@@ -124,24 +140,31 @@ public class PhotoGridViewFragment extends Fragment{
         String[] temp = uri.getPath().split("/");
         Call<UploadStatus> uploadResult = photoUploader.uploadWithIssueID(requestBody, issue_id,temp[temp.length-1]);
         Log.i("test","uploading file name:"+temp[temp.length-1]);
+        Toast.makeText(getContext(), "Uploading...", Toast.LENGTH_LONG).show();
         uploadResult.enqueue(new Callback<UploadStatus>() {
-
             @Override
             public void onResponse(Response<UploadStatus> response, Retrofit retrofit) {
                 UploadStatus result = response.body();
+                imageAdapter.getPhotoPath();
+                imageAdapter.notifyDataSetChanged();
 
                 if(result.error){
                     Log.i("TEST","photo upload failed");
+                    Toast.makeText(getContext(), "Upload Failed...", Toast.LENGTH_LONG).show();
                 }else {
                     Log.i("TEST","photo sent success");
+                    Toast.makeText(getContext(),"Upload Completed...",Toast.LENGTH_LONG).show();
+
                 }
 
             }
 
             @Override
             public void onFailure(Throwable t) {
+                Toast.makeText(getContext(), "Upload Failed...", Toast.LENGTH_LONG).show();
                 Log.i("test", "ERROR!!");
             }
         });
     }
+
 }

@@ -23,6 +23,12 @@ public interface RestInterface {
     );
 
     @FormUrlEncoded
+    @POST("/issueWithUid")
+    Call<Issue> getIssueWithUserID(
+            @Field("issue_id") Integer user_id
+    );
+
+    @FormUrlEncoded
     @POST("/login")
     Call<User> login(
             @Field("username") String username,

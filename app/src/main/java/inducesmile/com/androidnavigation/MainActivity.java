@@ -9,27 +9,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,27 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
-    String[]titles = {"ภาพรวม", "บันทึกงาน", "แผนที่", "อื่นๆ"};
+    String[]titles = {"รายการงาน", "บันทึกงาน", "แผนที่", "อื่นๆ"};
     private CharSequence mTitle;
     private CharSequence mDrawerTitle;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar topToolBar;
-    TextView tv;
-    private ArrayList<Issue> issuelist;
     SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    //TextView id, name, description, user_id;
 
-    String url = "http://igc.kmodoo.com:8888";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //tv = (TextView) findViewById(R.id.txtResult);
-      // pbar = (ProgressBar) findViewById(R.id.pb);
         mTitle = mDrawerTitle = getTitle();
 
         topToolBar = (Toolbar)findViewById(R.id.toolbar);
@@ -68,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         final List<ItemObject> listViewItems = new ArrayList<ItemObject>();
-        listViewItems.add(new ItemObject("ภาพรวม", R.drawable.imagetwo));
+        listViewItems.add(new ItemObject("รายการงาน", R.drawable.imagetwo));
         listViewItems.add(new ItemObject("บันทึกงาน", R.drawable.imageone));
         listViewItems.add(new ItemObject("แผนที่", R.drawable.imagetwo));
         listViewItems.add(new ItemObject("อื่นๆ", R.drawable.imagefour));
@@ -125,58 +106,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ///API
-        // id = (TextView) findViewById(R.id.txt_id);
-        // name = (TextView) findViewById(R.id.txt_name);
-        //description = (TextView) findViewById(R.id.txt_Des);
-        // user_id = (TextView) findViewById(R.id.txt_userid);
-
-        //making object of Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        //Creating Rest Services
-        RestInterface restInterface = retrofit.create(RestInterface.class);
-        Call<ArrayList<Issue>> searching = restInterface.searchIssue();
-
-
-        //Calling method to get
-        searching.enqueue(new Callback<ArrayList<Issue>>() {
-
-
-
-            @Override
-            public void onResponse(Response<ArrayList<Issue>> response, Retrofit retrofit) {
-                if (response.isSuccess()) {
-                    Log.println(Log.INFO, "Hey", response.toString());
-                    issuelist = response.body();
-                    //  tv.setText("Id:" + issue.getId() + "\nName :" + issue.getName() + "\nDescription :" + issue.getDescription() + "\nUserId :" + issue.getUser_id());
-
-                    Toast.makeText(getBaseContext(), "การค้นหา", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    //request not successful (like 400,401,403 etc)
-                    //Handle errors
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.println(Log.ERROR, "GGWP", t.toString());
-                Toast.makeText(getBaseContext(), "ไม่พบการค้นหา", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
     }
 
 
     private void selectItemFragment(int position){
 
         Fragment fragment = null;
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch(position) {
             default:
@@ -184,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new IssueListFragment();
                 break;
             case 1:
-                fragment = new IssueListFragment();
+                fragment = new MapFragment();
                 break;
             case 2:
                 fragment = new IssueListFragment();
@@ -253,62 +189,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public class myAdapter extends RecyclerView.Adapter<myAdapter.ViewHolder> {
-
-        private ArrayList<Issue> mIssues;
-
-        public myAdapter(ArrayList<Issue> issues) {
-
-            mIssues = issues;
-        }
-
-        public  class ViewHolder extends RecyclerView.ViewHolder{
-            public TextView id;
-            public TextView name;
-            public TextView description;
-            public TextView user_id;
-
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                id = (TextView) itemView.findViewById(R.id.id);
-                name = (TextView) itemView.findViewById(R.id.name);
-                description = (TextView) itemView.findViewById(R.id.description);
-                user_id = (TextView) itemView.findViewById(R.id.user_id);
-            }
-        }
-
-
-
-        @Override
-        public myAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            View view  = LayoutInflater
-                    .from(parent.getContext())
-                    .inflate(R.layout.result_issue,parent,false);
-
-            ViewHolder viewHolder = new ViewHolder(view);
-
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            Issue issue = mIssues.get(position);
-            holder.id.setText(issue.id);
-            holder.name.setText(issue.name);
-            holder.description.setText(issue.description);
-            holder.user_id.setText(issue.id);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mIssues.size();
-        }
-    }
-
-
-
 
 
 

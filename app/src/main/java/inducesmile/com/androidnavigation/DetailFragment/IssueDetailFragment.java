@@ -57,9 +57,19 @@ public class IssueDetailFragment extends Fragment{
                 TextView issue_name = (TextView) view.findViewById(R.id.issue_name);
                 issue_name.setText(issue.getName());
                 TextView issue_description = (TextView) view.findViewById(R.id.issue_description);
+
+
+                if(issue.description == "false"){
+                    issue.description = "-";
+                }
                 issue_description.setText(issue.getDescription());
+
                 TextView issue_deadline = (TextView) view.findViewById(R.id.issue_deadline);
+                if (issue.date_deadline == "false"){
+                    issue.date_deadline = "-";
+                }
                 issue_deadline.setText(issue.date_deadline);
+
                 Double customer_id = (Double) issue.partner_id.get(0);
                 getCustomer(customer_id, view);
             }
@@ -114,6 +124,9 @@ public class IssueDetailFragment extends Fragment{
             public void onResponse(Response<Customer> response, Retrofit retrofit) {
                 customer = response.body();
                 TextView issue_name = (TextView) viewInCustomer.findViewById(R.id.customer_address);
+                if(customer.street == "false"){
+                    customer.street = "-";
+                }
                 issue_name.setText(customer.street);
             }
 

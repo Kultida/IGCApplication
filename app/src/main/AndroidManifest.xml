@@ -43,6 +43,9 @@
                 android:value=".MainActivity" />
 
         </activity>
+        <activity
+            android:name=".PhotoUploader.PhotoDetailActivity">
+        </activity>
     </application>
 
 </manifest>
