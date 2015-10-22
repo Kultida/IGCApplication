@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -53,6 +54,17 @@ public class PhotoGridViewFragment extends Fragment{
         imageAdapter = new ImageAdapter(getContext(),issue_id);
         imageAdapter.clear();
         gridview.setAdapter(imageAdapter);
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Create intent
+                Intent intent = new Intent(getContext(), PhotoDetailActivity.class);
+                intent.putExtra("image_path", imageAdapter.imageUrl.get(position).file_path);
+
+                //Start details activity
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton myFab = (FloatingActionButton)  view.findViewById(R.id.myFAB);
         myFab.setOnClickListener(new View.OnClickListener() {
@@ -128,8 +140,8 @@ public class PhotoGridViewFragment extends Fragment{
         String[] temp = uri.getPath().split("/");
         Call<UploadStatus> uploadResult = photoUploader.uploadWithIssueID(requestBody, issue_id,temp[temp.length-1]);
         Log.i("test","uploading file name:"+temp[temp.length-1]);
+        Toast.makeText(getContext(), "Uploading...", Toast.LENGTH_LONG).show();
         uploadResult.enqueue(new Callback<UploadStatus>() {
-
             @Override
             public void onResponse(Response<UploadStatus> response, Retrofit retrofit) {
                 UploadStatus result = response.body();
@@ -154,4 +166,5 @@ public class PhotoGridViewFragment extends Fragment{
             }
         });
     }
+
 }
