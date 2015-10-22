@@ -31,12 +31,7 @@ public class ImageAdapter extends ArrayAdapter {
         mContext = c;
         this.issue_id = issue_id;
         getPhotoPath();
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
-//        imageUrl.add("http://igc.kmodoo.com:8888/uploads/image.jpg");
+
     }
 
     public int getCount() {
@@ -68,8 +63,7 @@ public class ImageAdapter extends ArrayAdapter {
         Glide.with(mContext).load(imageUrl.get(position).file_path)
                 .placeholder(R.drawable.photo_placeholder_loading)
                 .into(imageView);
-//        Glide.with(get).load("http://goo.gl/gEgYUd").into(imageView);
-//        imageView.setImageURI(imageUrl.get(position));
+
         return imageView;
     }
 
