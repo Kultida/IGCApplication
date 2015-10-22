@@ -48,8 +48,10 @@ public class IssueListFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences(PREF_NAME, 0);
         myUser_id = sharedPreferences.getInt("user_id",0);
         if(myUser_id == 0){
+            Log.i("user_id","Setting My id to SP = "+Integer.toString(myUser_id));
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt("user_id",10);
+            editor.commit();
             myUser_id = 10;
         }
 
