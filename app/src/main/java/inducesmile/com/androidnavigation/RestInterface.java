@@ -24,8 +24,8 @@ public interface RestInterface {
 
     @FormUrlEncoded
     @POST("/issueWithUid")
-    Call<Issue> getIssueWithUserID(
-            @Field("issue_id") Integer user_id
+    Call<ArrayList<Issue>> getIssueWithUserID(
+            @Field("user_id") Integer user_id
     );
 
     @FormUrlEncoded

@@ -1,6 +1,7 @@
 package inducesmile.com.androidnavigation;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,10 @@ public class IssueListFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Issue> issueList;
 
+    public static final String PREF_NAME = "USER_ID";
+    private Integer myUser_id;
+    private SharedPreferences sharedPreferences;
+
     public static IssueListFragment newInstance() {
         IssueListFragment fragment = new IssueListFragment();
         return fragment;
@@ -40,7 +45,15 @@ public class IssueListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.search_issue, container, false);
         issueList = new ArrayList<>();
+        sharedPreferences = getActivity().getSharedPreferences(PREF_NAME, 0);
+        myUser_id = sharedPreferences.getInt("user_id",0);
+        if(myUser_id == 0){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("user_id",10);
+            myUser_id = 10;
+        }
 
+        Log.i("user_id","My user id = "+Integer.toString(myUser_id));
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://igc.kmodoo.com:8888")
@@ -49,7 +62,7 @@ public class IssueListFragment extends Fragment {
         RestInterface issuelistapi = retrofit.create(RestInterface.class);
 
 
-        Call<ArrayList<Issue>> issueListing = issuelistapi.searchIssue();
+        Call<ArrayList<Issue>> issueListing = issuelistapi.getIssueWithUserID(myUser_id);
 
         issueListing.enqueue(new Callback<ArrayList<Issue>>() {
 
